@@ -51,7 +51,7 @@ async function sendMail(sender,subject,message){
   let mailOptions = {
     from: process.env.MAIL_USERNAME,
     replyTo:sender,
-    to: process.env.MAIL_USERNAME,
+    to: process.env.SECONDMAIL_USERNAME,
     subject: subject,
     text: message
   };
