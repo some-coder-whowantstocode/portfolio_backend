@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer')
 const {google} = require('googleapis')
 require('dotenv').config()
 const cors = require('cors')
+const { MongoClient } = require('mongodb');
 
 const corsOptions ={
   origin: process.env.url,
@@ -74,6 +75,7 @@ res.send('This is for sending mail to me.')
 app.post('/sendmail',async(req,res)=>{
   try{
     const {sender,subject,message} = req.body;
+        db.collection('clients').insertOne(req.body,)
     // await sendMail(sender,subject,message);
     console.log(req.body)
   
@@ -84,7 +86,20 @@ app.post('/sendmail',async(req,res)=>{
   }
  
 })
+const client = new MongoClient(process.env.mongourl);
 
+const start =async()=>{
+  try{
+    await client.connect();
+    db = client.db('clients');
+  }catch(err){
+    console.log(err)
+  }
+ 
+  
 app.listen(port, () => {
   console.log(`nodemailerProject is listening at http://localhost:${port}`)
 })
+
+}
+start()
