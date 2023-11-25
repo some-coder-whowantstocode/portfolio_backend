@@ -74,7 +74,7 @@ res.send('This is for sending mail to me.')
 app.post('/sendmail',async(req,res)=>{
   try{
     const {sender,subject,message} = req.body;
-    await sendMail(sender,subject,message);
+    // await sendMail(sender,subject,message);
     console.log(req.body)
   
     res.status(200).send('email sent.');
